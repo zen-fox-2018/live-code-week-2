@@ -65,7 +65,6 @@ class TheaterBroadway {
         let subTotal = quantity * price;
         let grandTotal = null;
         let balance = audience.balance;
-        console.log(balance);
         if (audience.balance - subTotal >= 0) {
           grandTotal = 'PAID BY BALANCE';
           audience.balance -= subTotal;
