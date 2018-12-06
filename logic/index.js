@@ -1,5 +1,28 @@
 function generateChart(data) {
-  console.log(data)
+  let board = [];
+  let numStock = [];
+  let numDay = [];
+
+  data.map(element => {
+    if(element.stock > 1) {
+      numStock.push(element.stock)
+    }
+    if (element.day > 1) {
+      numDay.push(element.day)
+    }
+  })
+
+  let maxX = Math.max.apply(null, numStock);
+  let maxY = Math.max.apply(null, numDay);
+
+  for(let i = 0; i < maxX + 2; i++) {
+    board.push([])
+    for(let j = 0; j < maxY + 2; j++) {
+      board[i].push(" ")
+    }
+  }
+
+  console.log(board)
 }
 
 const stockData1 = [{

@@ -43,7 +43,7 @@ class Member extends Audience {
 
 class NonMember extends Audience {
     constructor() {
-        super()
+        super("ash", "ashLynx@mail.com", 22)
     }
 }
 

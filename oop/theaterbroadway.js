@@ -1,15 +1,27 @@
 
 class TheaterBroadway {
     constructor(todayShow, audiences, priceVVIP, priceVIP, priceRegular) {
-        this.todayShow = todayShow;
-        this.audiences = audiences;
-        this.priceVVIP = priceVVIP;
-        this.priceVIP = priceVIP;
-        this.priceRegular = priceRegular;     
+        this.todayShow = null;
+        this.audiences = { VVIP: [], VIP: [], Regular: [] };
+        this.priceVVIP = null;
+        this.priceVIP = null;
+        this.priceRegular = null;     
     }
 
     buyTicket() {
-        
+
+    }
+
+    setTodayShow() {
+
+    }
+
+    showAudience(input) {
+        if(input.type === "GOLD") {
+            this.audiences.VVIP.push(input.name)
+        } else if (input.type === "SILVER") {
+            this.audiences.VIP.push(input.name)
+        }
     }
 }
 
