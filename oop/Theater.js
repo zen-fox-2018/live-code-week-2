@@ -56,45 +56,178 @@ class TheaterBroadway{
         console.log(member)
     }
 
-    buyTicket(audience, qty) {
-        let vvip = false
-        let vip = false
-        let regular = false
-        let priceVVIP = this.priceVVIP * qty
-        let priceVIP = this.priceVIP * qty
-        let priceRegular = this.priceRegular * qty
-
+    buyTicket(audience, section, qty) {
+        var price = 0
+        var subTotal = 0
         if(audience.type === 'Gold') {
-            vvip = true
-            vip = true
-            regular = true
+            var grandTotal = ''
+            var remainingBalance = null
+            if(section === 'vvip') {
+                price = this.priceVVIP
+                subTotal = this.priceVVIP*qty
+                if(this.balance >= subTotal) {
+                    grandTotal += 'PAID BY BALANCE'
+                    remainingBalance = this.balance - subTotal
+                } else {
+                    grandTotal += subTotal - this.balance
+                    remainingBalance = 0
+                }        
+            } else if(section === 'vip') {
+                price = this.priceVIP
+                subTotal = this.priceVIP*qty
+                if(this.balance >= subTotal) {
+                    grandTotal += 'PAID BY BALANCE'
+                    remainingBalance = this.balance - subTotal
+                } else {
+                    grandTotal = subTotal - this.balance
+                    remainingBalance = 0
+                }
+            } else if(section === 'regular') {
+                price = this.regular
+                subTotal = this.priceRegular*qty
+                if(this.balance >= subTotal) {
+                    grandTotal += 'PAID BY BALANCE'
+                    remainingBalance = this.balance - subTotal
+                } else {
+                    grandTotal += subTotal - this.balance
+                    remainingBalance = 0
+                }
+            }
+            console.log('********************INVOICE********************')
+            console.log('Theater Broadway')
+            console.log('CONFIRMED')
+            console.log('TICKET')
+            console.log(this.todayShow)
+            console.log(audience.type)
+            console.log(audience.memberId)
+            console.log('***********************************************')
+            console.log(`Quantity: ${qty}`)
+            console.log(`Price: ${price}`)
+            console.log(`Sub Total: ${subTotal}`)
+            console.log(`Balance: ${audience.balance}`)
+            console.log(`Grand Total: ${grandTotal}`)
+            console.log(`Remaining Balance: ${remainingBalance}`)
+            console.log('***********************************************')
         } else if(audience.type === 'Silver') {
-            vvip = false
-            vip = true
-            regular = true
+            var grandTotal = ''
+            var remainingBalance = null
+            if(section === 'vvip') {
+                console.log('We are sorry, this section only for Gold member')
+            } else if(section === 'vip'){
+                price = this.priceVIP
+                subTotal = this.priceVIP*qty
+                if(this.balance >= subTotal) {
+                    grandTotal += 'PAID BY BALANCE'
+                    remainingBalance = this.balance - subTotal
+                } else {
+                    grandTotal += subTotal - this.balance
+                    remainingBalance = 0
+                }
+            } else if(section === 'regular') {
+                price = this.regular
+                subTotal = this.priceRegular*qty
+                if(this.balance >= subTotal) {
+                    grandTotal += 'PAID BY BALANCE'
+                    remainingBalance = this.balance - subTotal
+                } else {
+                    grandTotal += subTotal - this.balance
+                    remainingBalance = 0
+                }
+            }
+            console.log('********************INVOICE********************')
+            console.log('Theater Broadway')
+            console.log('CONFIRMED')
+            console.log('TICKET')
+            console.log(this.todayShow)
+            console.log(audience.type)
+            console.log(audience.memberId)
+            console.log('***********************************************')
+            console.log(`Quantity: ${qty}`)
+            console.log(`Price: ${price}`)
+            console.log(`Sub Total: ${subTotal}`)
+            console.log(`Balance: ${audience.balance}`)
+            console.log(`Grand Total: ${grandTotal}`)
+            console.log(`Remaining Balance: ${remainingBalance}`)
+            console.log('***********************************************')
         } else if(audience.type === 'Regular') {
-            vvip = false
-            vip = false
-            regular = true
+            var grandTotal = ''
+            var remainingBalance = null
+            if(section === 'vvip' || section === 'vip') {
+                console.log(`With all due respect, section ${section} only for member`)
+            } else if(section === 'regular') {
+                price = this.regular
+                subTotal = this.priceRegular*qty
+                if(this.balance >= subTotal) {
+                    grandTotal += 'PAID BY BALANCE'
+                    remainingBalance = this.balance - subTotal
+                } else {
+                    grandTotal += subTotal - this.balance
+                    remainingBalance = 0
+                }
+            }
+            console.log('********************INVOICE********************')
+            console.log('Theater Broadway')
+            console.log('CONFIRMED')
+            console.log('TICKET')
+            console.log(this.todayShow)
+            console.log(audience.type)
+            console.log(audience.name)
+            console.log('***********************************************')
+            console.log(`Quantity: ${qty}`)
+            console.log(`Price: ${price}`)
+            console.log(`Sub Total: ${subTotal}`)
+            console.log(`Grand Total: ${grandTotal}`)
+            console.log('***********************************************')
         }
+
+        // let grandTotal = null
+        // let remainingBalance = null
+        // if(this.balance >= subTotal) {
+        //     grandTotal = 'PAID BY BALANCE'
+        //     remainingBalance = this.balance - subTotal
+        // } else {
+        //     grandTotal = subTotal - this.balance
+        //     remainingBalance = 0
+        // }
 
         //invoice
-        if(audience.type === 'Gold' || audience.type === 'Silver') {
-
-        } else if(audience.type === 'Reguler') {
-            
-        }
-    }
-
-    invoice() {
-        console.log('********************INVOICE********************')
-        console.log('***********************************************')
+        // if(audience.type === 'Gold' || audience.type === 'Silver') {
+        //     console.log('Theater Broadway')
+        //     console.log('CONFIRMED')
+        //     console.log('TICKET')
+        //     console.log(this.todayShow)
+        //     console.log(audience.type)
+        //     console.log(audience.memberId)
+        //     console.log('********************INVOICE********************')
+        //     console.log(`Quantity: ${qty}`)
+        //     console.log(`Price: ${price}`)
+        //     console.log(`Price: ${subTotal}`)
+        //     console.log(`Price: ${audience.balance}`)
+        //     console.log(`Grand Total: ${grandTotal}`)
+        //     console.log(`Remaining Balance: ${remainingBalance}`)
+        //     console.log('***********************************************')
+        // } else if(audience.type === 'Reguler') {
+        //     console.log('********************INVOICE********************')
+        //     console.log('Theater Broadway')
+        //     console.log('CONFIRMED')
+        //     console.log('TICKET')
+        //     console.log(this.todayShow)
+        //     console.log(audience.type)
+        //     console.log(audience.memberId)
+        //     console.log('***********************************************')
+        //     console.log(`Quantity: ${qty}`)
+        //     console.log(`Price: ${price}`)
+        //     console.log(`Price: ${subTotal}`)
+        //     console.log(`Price: ${audience.balance}`)
+        //     console.log(`Grand Total: ${grandTotal}`)
+        //     console.log('***********************************************')
+        // }
     }
 }
 
 let show = new TheaterBroadway()
 show.setTodayShow('Bohemian Rhapsody', 75000, 50000, 35000)
-console.log(show)
+// console.log(show)
 
 let januar = new Member('januar', 'januar@mail.com', 25)
 let elis = new Member('elis', 'elis@mail.com', 24)
@@ -106,8 +239,8 @@ elis.topUp(150000)
 // console.log(elis)
 // console.log(agus)
 
-show.buyTicket(januar, 2)
-show.buyTicket(elis, 1)
-show.buyTicket(agus, 3)
+show.buyTicket(januar, 'vvip', 2)
+// show.buyTicket(elis, 'vip', 1)
+// show.buyTicket(agus, 'regular', 3)
 
 module.exports = TheaterBroadway
