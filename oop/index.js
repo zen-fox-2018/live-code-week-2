@@ -79,7 +79,12 @@ class TheaterBroadway{
             console.log('THERE IS NO AUDIENCE IN THIS SECTION')
         }   else{            
             for(let i = 0; i < this.audiences.Regular.length; i++){
-                console.log(`${i+1}. ${this.audiences.VIP[i].name} (regular member) `)
+                if(this.audiences.Regular[i].type == 'Non Member'){
+                    console.log(`${i+1}. ${this.audiences.Regular[i].name} (regular member) `)
+                }   else{
+                    console.log(`${i+1}. ${this.audiences.VIP[i].name} (${this.audiences.Regular[i].type} member) `)
+                }
+
             }
         }
     }
@@ -114,7 +119,22 @@ class TheaterBroadway{
             console.log(`Price       : ${price}`)
             console.log(`Sub Total   : ${quantity * price}`)
             console.log(`Balance     : ${customer.balance}`)
-            console.log(`Grand Total : PAID BY BALANCE         Remaining Balance:${customer.balance - quantity * price}  `)
+
+            if(quantity * price> customer.balance){
+                console.log(`Grand Total :${quantity * price - customer.balance}         Remaining Balance: 0  `)
+            }   else{
+                console.log(`Grand Total : PAID BY BALANCE         Remaining Balance:${customer.balance - quantity * price}  `)
+            }
+            console.log('*************************************************************')
+        }   else{
+            console.log('**************************INVOICE****************************')
+            console.log('Theater Broadway                             TICKET CONFIRMED')
+            console.log(`                     ${this.todayShow}      ${customer.name} (Regular)`)
+            console.log('*************************************************************')
+            console.log(`Quantity    : ${quantity}`)
+            console.log(`Price       : ${price}`)
+            console.log(`Sub Total   : ${quantity * price}`)
+            console.log(`Grand Total : ${quantity * price}                            `)
             console.log('*************************************************************')
         }
     }
@@ -138,6 +158,7 @@ bookOfMormon.showAudience()
 bookOfMormon.buyTicket(nonMember1, 'VIP', 1)
 
 bookOfMormon.buyTicket(member1, 'VIP', 3)
+bookOfMormon.buyTicket(nonMember1, 'Regular', 1)
 
 bookOfMormon.showAudience()
 // console.log(bookOfMormon.audiences.VVIP)
