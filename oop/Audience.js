@@ -33,6 +33,7 @@ class Member extends Audience {
         return section[Math.floor(Math.random() * section.length)]
     }
 
+
 }
 
 class NonMember extends Audience {
