@@ -51,19 +51,47 @@ class TheaterBroadway {
     }
 
     buyTicket(classAudience, section, jumlahtiket){
-        if(section == VVIP){
+        let grandTotal =0
+        let subTotalVVIP = this.priceVVIP * jumlahtiket
+        let subTotalVIP = this.priceVIP * jumlahtiket
+        let subTotalRegular = this.priceRegular * jumlahtiket
+        if(section == 'VVIP'){
             if(classAudience.type.typeMember == 'Silver') {
                return console.log("We are sorry, this section only for gold member");   
             } else if(classAudience.type.typeMember == 'Regular') {
                 return console.log(`With all due respect, section ${section} only for member`);
             } else {
-                this.audiences.VVIP.push(classAudience)
                 
+                this.audiences.VVIP.push(classAudience)
+                if(classAudience.type.balance < subTotalVVIP){
+                    classAudience.type.balance = 0
+                }else {
+                    classAudience.type.balance -= (this.priceVVIP * jumlahtiket)
+                }        
             }
-        } else if (section == VIP) {
+        } else if (section == 'VIP') {
+            if(classAudience.type.typeMember == 'Regular') {
+                 return console.log(`With all due respect, section ${section} only for member`);
+             } else {
+                 
+                 this.audiences.VIP.push(classAudience)
+                 if(classAudience.type.balance < subTotalVIP){
+                     classAudience.type.balance = 0
+                 }else {
+                     classAudience.type.balance -= subTotalVIP
+                 }     
+                 console.log();
+                 
+             }
+        } else if(section == 'Regular' ){
 
+            this.audiences.Regular.push(classAudience)
+             
+            console.log();
         }
-      
+        if (section == 'VVIP' && section == 'VIP'){
+            
+        }
     }
 }
 
