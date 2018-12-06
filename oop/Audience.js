@@ -18,7 +18,7 @@ class Member extends Audience {
     createMemberId(name, age){
         let newId = ''
         let thisYear = new Date().getFullYear()
-        let birthYear = thisYear - age
+        let birthYear = String(Number(thisYear) - Number(age))
         newId = name[0][0] + name[0][1] + name[0][2] + birthYear + ~~(Math.random() * 20)
     }
 
@@ -36,8 +36,9 @@ class Member extends Audience {
 
     topUpBalance(amount) {
         if(amount < 500){
-            
+            return 'Sorry, minimum amount is 500'
         }
+        this.balance += amount
     }
 
 }
