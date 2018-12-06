@@ -39,3 +39,4 @@ class NonMembers extends Audience {
     }
 }
 module.exports = {Audience, Members, NonMembers};
+//

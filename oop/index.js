@@ -9,3 +9,4 @@ console.log(celyn)
 let theaterBroadway = new Theater()
 theaterBroadway.buyTickets(celyn, "VIP", 2);
 console.log(theaterBroadway.showAudience())
+//

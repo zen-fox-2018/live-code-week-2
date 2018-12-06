@@ -1,5 +1,4 @@
 function generateChart(data) {
-  //your code here
   //Release 0 buat board Y stockMax+2, X dayMax+2
   let findMaxStock = 0;
   let findMaxDay = 0;
