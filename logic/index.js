@@ -43,8 +43,8 @@ function generateChart(data) {
 
 function FindIndex(index) {
   console.log(index);
-  for (let i = 0; i < index.length; i++) {
-    if (index[i][0] > index[i][1]) {
+  for (let i = 0; i < index.length - 1; i++) {
+    if (index[i][0] > index[i+1][0]) {
       
     }
   }

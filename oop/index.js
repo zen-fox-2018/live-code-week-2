@@ -1,6 +1,6 @@
 //AUDIENCE
 class Audience {
-  constructor(name, email, age){
+  constructor(name, email, age) {
     this.name = name;
     this.email = email;
     this.age = age;
@@ -19,7 +19,7 @@ class Member extends Audience {
   getType() {
     let random = Math.ceil(Math.random() * 2);
     if (random === 1) {
-      var type = 'Gold';
+      var type = 'gold';
     } else {
       var type = 'silver';
     }
@@ -28,7 +28,7 @@ class Member extends Audience {
 
   getMemberId() {
     let random = Math.floor(Math.random() * 20);
-    let result = this.name.slice(0,3) + (2018 - this.age) + random;
+    let result = this.name.slice(0, 3) + (2018 - this.age) + random;
     return result;
   }
 
@@ -39,7 +39,7 @@ class Member extends Audience {
       this.balance += uang;
     }
   }
-} 
+}
 
 class NonMember extends Audience {
   constructor(name, email, age) {
@@ -48,36 +48,85 @@ class NonMember extends Audience {
   }
 }
 
+//THEATER BROADWAY
 class TheaterBroadway {
-  constructor() {
+  constructor(audienceArr) {
     this.todayShow = null;
-    this.Audience = {
-      VVIP: [],
-      VIP: [],
+    this.audienceList = {
+      vvip: [],
+      vip: [],
       regular: []
     }
-    this.priceVIP = null;
     this.priceVVIP = null;
+    this.priceVIP = null;
     this.priceRegular = null;
+
+    this.audienceType(audienceArr);
+  }
+
+  audienceType(audienceArr) {
+    for (let i = 0; i < audienceArr.length; i++) {
+      if (audienceArr[i].type === 'gold') {
+        this.audienceList.vvip.push(audienceArr[i].name);
+      } else if (audienceArr[i].type === 'silver') {
+        this.audienceList.vip.push(audienceArr[i].name);
+      } else {
+        this.audienceList.regular.push(audienceArr[i].name);
+      }
+    }
   }
 
   setTodayShow() {
-    let showList = {
-      show: 'The Book of Mormon',
-      priceVVIP: 500,
-      priceVIP: 700,
-      priceRegular: 900
+    let random = Math.floor(Math.random() * 2);
+    if (random === 1) {
+        this.todayShow = 'The Book of Mormon';
+        this.priceVVIP = 500;
+        this.priceVIP = 700;
+        this.priceRegular = 900;
+    } else {
+      this.todayShow = 'cat';
+      this.priceVVIP = 400;
+      this.priceVIP = 600;
+      this.priceRegular = 800;
     }
   };
 
-  showAudience(name) {
+  showAudience() {
     let vvipMember = '';
     let vipMember = '';
     let regularMember = '';
 
-    if  (name.type === 'gold') {
-      
+    for (let i = 0; i < this.audienceList.vvip.length; i++) {
+      vvipMember += `${i + 1}. ${this.audienceList.vvip[i]} (gold member)` + '\n';
     }
+    for (let i = 0; i < this.audienceList.vip.length; i++) {
+      vipMember += `${i + 1}. ${this.audienceList.vip[i]} (silver member)` + '\n';
+    }
+    for (let i = 0; i < this.audienceList.regular.length; i++) {
+      regularMember += `${i + 1}. ${this.audienceList.regular[i]} (regular member)` + '\n';
+    }
+
+    if (vvipMember === '') {
+      vvipMember = 'There is no audience in this section';
+    }
+    if (vipMember === '') {
+      vipMember = 'There is no audience in this section';
+    }
+    if (regularMember === '') {
+      regularMember = 'There is no audience in this section';
+    }
+    
+    console.log('List Audience: ');
+    console.log('-----------VVIP------------');
+    console.log(vvipMember);
+    console.log('-----------VIP-------------');
+    console.log(vipMember);
+    console.log('-----------Regular----------');
+    console.log(regularMember);
+  }
+
+  buyTicket() {
+    
   }
 }
 
@@ -85,10 +134,17 @@ class TheaterBroadway {
 let there = new Member('Theresiacoa', 'theresia@gmail.com', 22);
 let nickson = new Member('Nicksoncoa', 'nickson@gmail.com', 21);
 let thania = new Member('Thaniacoa', 'thania@gmail.com', 19);
-let elena = new NonMember('Elenacoa', 'elena@gmail.com', 17 );
+let elena = new NonMember('Elenacoa', 'elena@gmail.com', 17);
 console.log(there.topUpBalance(500));
-// console.log(there);
-// console.log(nickson);
-// console.log(thania);
-// console.log(elena);
-console.log()
+console.log(there);
+console.log(nickson);
+console.log(thania);
+console.log(elena);
+console.log('\n');
+
+let audiences = new TheaterBroadway([there, nickson, thania, elena]);
+audiences.showAudience();
+// let audience2 = new TheaterBroadway(nickson);
+// let audience3= new TheaterBroadway(thania);
+// let audience4 = new TheaterBroadway(elena);
+console.log(audiences);
