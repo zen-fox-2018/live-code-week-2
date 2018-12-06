@@ -1,5 +1,30 @@
 function generateChart(data) {
   //your code here
+  // console.log(data)
+
+  let board = []
+
+  let tinggi = 0
+  let alas = 0
+
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].stock > tinggi) {
+      tinggi = data[i].stock
+    }
+
+    if (data[i].day > alas) {
+      alas = data[i].day
+    }
+  }
+
+  let y = tinggi + 2
+  let x = alas + 2
+  
+  for (let i = 0; i < y; i++) {
+    const element = array[i];
+    
+  }
+
 }
 
 const stockData1 = [{
@@ -36,17 +61,17 @@ generateChart(stockData1)
 
 */
 
-const stockData2 = [{
-  stock: 2,
-  day: 1
-}, {
-  stock: 3,
-  day: 3
-}, {
-  stock: 1,
-  day: 5
-}]
-generateChart(stockData2)
+// const stockData2 = [{
+//   stock: 2,
+//   day: 1
+// }, {
+//   stock: 3,
+//   day: 3
+// }, {
+//   stock: 1,
+//   day: 5
+// }]
+// generateChart(stockData2)
 
 /*
   [

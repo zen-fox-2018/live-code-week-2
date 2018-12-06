@@ -13,6 +13,7 @@ class Member extends Audience {
         this.type = this.memberType()
         this.memberId = this.createID(name, age)
         this.balance = 0
+        // TheaterBroadway.getAudienceList(this.type)
     }
 
     createID(name, age) {
@@ -51,7 +52,6 @@ class Member extends Audience {
         this.balance = balance
     }
 
-
 }
 
 class NonMember extends Audience {
@@ -59,6 +59,9 @@ class NonMember extends Audience {
         super(name, email, age)
     }
 }
+
+
+
 
 module.exports = { Audience,Member,NonMember }
 
@@ -72,8 +75,18 @@ a.topUp(100)
 
 console.log(a, 'after top up');
 
-// function penonton(params) {
-//     let = 
+// function penonton() {
+//     let total = []
+//     let member = []
+//     let nonmember = []
+//     member.push(a)
+//     nonmember.push(b)
+//     total.push(member)
+//     total.push(nonmember)
+
+//     return total
 // }
 
 console.log(a.constructor.name)
+console.log(b.constructor.name)
+console.log()
