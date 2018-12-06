@@ -6,16 +6,20 @@ function generateChart(data) {
     let newColumn = [];
     for (let j = 0; j <= maxDay + 2; j++) {
       let index = data.findIndex( e => e.day === j);
-      let indexR = {i : 0, j: 0}
-      let stock = maxStock + 3;
-      let day = maxDay + 3;
+      let indexR = data.findIndex( e => e.day === j + 1);
+      let UrdI = 0;
+      let stock = 0;
+      let day = 0;
       let urd = '';
+      if (indexR != -1) {
+        UrdI = data[indexR].stock;
+      }
 
       if (index != -1) {
         stock = data[index].stock;
         day = data[index].day;
         if (index + 1 < data.length) {
-          if (data[index].stock < data[index + 1].stock) {
+          if (data[index].stock < data[index + 1].stock) {10
             urd = 'U';
           } else if (data[index].stock < data[index + 1].stock) {
             urd = 'D';
@@ -23,7 +27,6 @@ function generateChart(data) {
         }
       } else {
         urd = 'R';
-        indexR = {i: data[index + 1].stock, j: j};
       }
       if (j === 0 && i === 0) {
         newColumn.push('x');
@@ -31,7 +34,9 @@ function generateChart(data) {
         newColumn.push(i+'');
       } else if (i === 0) {
         newColumn.push(j+'');
-      }else if (i === stock && j === day) {
+      } else if (i === UrdI) {
+        newColumn.push(urd);
+      } else if (i === stock && j === day) {
         newColumn.push('#');
       } else {
         newColumn.push(' ');
