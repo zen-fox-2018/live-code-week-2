@@ -1,9 +1,8 @@
 const Audience = require('./audience') 
 
 class NonMember extends Audience {
-  contructor(name , email, age, type) {
-    super(name, email, age, type)
-
+  constructor(name , email, age) {
+    super(name, email, age)
   }
 }
 

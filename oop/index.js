@@ -49,18 +49,29 @@ class Theater {
   }
 
   buyTicket(audience, section, amount) {
+    let check = [false]
     if(audience.constructor.name == 'Member') {
       if (audience.type == 'gold') {
         this.genAmount(amount, section, audience)
+        check = [true, ]
       } else if (audience.type == 'silver') {
         if (section == 'VVIP') {
           console.log(`We are sorry, this section only for gold member`)
         } else {
           this.genAmount(amount, section, audience)
+          check = [true, ]
         }
       } 
     } else if (audience.constructor.name == 'NonMember') {
-      
+      if (section !== 'Regular') {
+        console.log(`With all due respect, section ${section} only for member`)
+      } else {
+        this.genAmount(amount, section, audience)
+        check = [true, ]
+      }
+    }
+    if (check[0] == true) {
+      this.genInvoice(audience, amount ,  )
     }
   }
   
@@ -79,4 +90,50 @@ class Theater {
       }
     }
   }
+
+  genInvoice(audi, amount, price) {
+    console.log(`**************************INVOICE****************************`)
+    console.log(` Theater Broadway                             TICKET CONFIRMED`)
+    let temp ;
+    if (audi.constructor.name == 'NonMember') {
+      temp = `${audi.name} (${audi.type})`
+    } else {
+      temp = `${audi.memberId} (${audi.type})`
+    }
+    console.log(`                     ${this.todayShow}      ${temp}`)
+    console.log('*************************************************************')
+    console.log(`Quantity    : ${amount}`)
+    console.log(`Price       : ${price}`)
+    let subTot = amount* price
+    console.log(`Sub Total   : ${subTot}`)
+    console.log(`Balance     : ${audi.balance}`)
+    if (audi.constructor.name == 'Member') {
+      let remain = audi.balance - subTot
+      if (remain >= 0) {
+        audi.balance = remain
+        console.log(`Grand Total : PAID BY BALANCE         Remaining Balance: ${audi.balance}`)
+      } else {
+        let minus = Math.abs(remain)
+        audi.balance = 0
+        console.log(`Grand Total : ${minus}         Remaining Balance: ${audi.balance}`)
+      }
+    }
+    console.log('*************************************************************')
+
+  }
 }
+
+let vene = new Member('venecia', 'cia@mail.com', 18, 1000) 
+let zia = new Member('zia', 'zia@mail.com', 21, 500) 
+let nonM = new NonMember('non', 'non@mail.com', 20) 
+
+// console.log(vene) 
+// vene.topUp(500)
+// console.log(vene)
+
+let broadway = new Theater()
+broadway.setTodayShow(`The book of Mormon` ,300, 200, 100)
+// console.log(broadway)
+broadway.buyTicket(vene, 'VVIP', 3)
+// console.log(zia)
+// console.log(nonM)

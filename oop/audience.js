@@ -1,9 +1,9 @@
 class Audience {
-  constructor(name , email , age , type) {
+  constructor(name , email , age) {
     this.name = name 
     this.email = email 
     this.age = age 
-    this.type = type || 'Regular'
+    this.type = 'Regular'
   }
 }
 

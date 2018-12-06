@@ -2,9 +2,10 @@ const Audience = require('./audience')
 
 class Member extends Audience {
   constructor(name, email ,age , balance ) {
-    super(name, email, age ,this.genType()) 
+    super(name, email, age) 
     this.memberId = this.genMemId()
     this.balance = balance || 0
+    this.type = this.genType()
   }
 
   genType() {
