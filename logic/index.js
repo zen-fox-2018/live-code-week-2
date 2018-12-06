@@ -49,8 +49,6 @@ function generateChart(data) {
 
   }
 
-  console.log(placedData);
-
   //Eksekusi
   for (let i = 0; i < placedData.length; i++) {
     if (i !== placedData.length-1) {
@@ -64,11 +62,24 @@ function generateChart(data) {
           board[data1[0]+j][data1[1]] = "D"
         }
         let selisihHari = data2[1] - data1[1]
+        for (let j = 1; j < selisihHari; j++) {
+          board[data1[0]+selisih][data1[1]+j] = "R"
+        }
       }
       else if (data1[0] > data2[0]) {
         let selisih = data1[0] - data2[0]
         for (let j = 1; j <= selisih; j++) {
           board[data1[0]-j][data1[1]] = "U"
+        }
+        let selisihHari = data2[1] - data1[1]
+        for (let j = 1; j < selisihHari; j++) {
+          board[data1[0]-selisih][data1[1]+j] = "R"
+        }
+      }
+      else if (data1[0] === data2[0]) {
+        let selisihHari = data2[1] - data1[1]
+        for (let j = 1; j < selisihHari; j++) {
+          board[data1[0]][data1[1]+j] = "R"
         }
       }
     }
@@ -121,7 +132,7 @@ const stockData2 = [{
   stock: 1,
   day: 5
 }]
-// generateChart(stockData2)
+generateChart(stockData2)
 
 /*
   [
