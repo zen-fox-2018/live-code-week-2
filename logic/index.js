@@ -1,5 +1,15 @@
 function generateChart(data) {
   //your code here
+  let row = []
+  for(let i = 0; i < 10; i++){
+    let col = []
+    for(let i = 0; i < 11; i++) {
+      col.push(' ')
+    }
+    row.push(col)
+  }
+  console.log(row)
+  return ''
 }
 
 const stockData1 = [{
