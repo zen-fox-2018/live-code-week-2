@@ -27,10 +27,10 @@ class Member extends Audience {
 
     topUp(money) {
         if (money < 500 ) {
-            return `Sorry, minimum amount is 500`
+            console.log(`Sorry, minimum amount is 500`) 
         } else {
             this.balance = money
-            return `anda berhasil topup sebesar ${money}`
+            console.log( `anda berhasil topup sebesar ${money}`)
         }
     }
 }
