@@ -1,5 +1,5 @@
 function generateChart(data) {
-  //your code here
+  console.log(data)
 }
 
 const stockData1 = [{
