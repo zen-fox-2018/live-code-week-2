@@ -1,4 +1,4 @@
-function genereateBoard(data){
+function generateBoard(data){
   //find highest Value
   var highestStock = 0;
   var highestDay = 0;
@@ -16,7 +16,7 @@ function genereateBoard(data){
   var result = [];
   for (var j = 0; j < highestStock+3; j++) {
     var fillResult = [];
-    for (var k = 0; k < highestDay+2; k++) {
+    for (var k = 0; k < highestDay+3; k++) {
       if (k == 0 && j != highestStock+2) {
         fillResult.push(String(countStock));
         countStock--;
@@ -39,10 +39,39 @@ function genereateBoard(data){
   return result;
 }
 
+function generatePosition(data){
+  var board = generateBoard(data);
+  for (var i = 0; i < data.length; i++) {
+    var indexX = data[i].day;
+    var indexY = board[0][0] - data[i].stock;
+    board[indexY][indexX] = '#';
+  }
+  return board;
+}
+
 function generateChart(data) {
   //your code here
-  var board = generateBoard(data);
-  console.log(board);
+  var board = generatePosition(data);
+  var day = [];
+  var stock = [];
+  for (var i = 0; i < data.length; i++) {
+    stock.push(data[i].stock);
+    day.push(data[i].day);
+  }
+  var sortedDay = day.sort();
+  var sortedStock = stock.sort();
+  var subsStock = 100;
+  var subsDay = 100;
+  for (var j = 0; j < sortedStock.length-1; j++) {
+    while (subsStock > 0) {
+      if (sortedStock[j+1] > subsStock[j]) {
+        
+      }
+    }
+    for (var k = 0; k < sortedDay.length-1; k++) {
+      while
+    }
+  }
 }
 
 
