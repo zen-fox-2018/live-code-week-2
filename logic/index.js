@@ -1,5 +1,45 @@
 function generateChart(data) {
   //your code here
+  let maxStock = Math.max.apply(Math, data.map(o => o.stock ));
+  let maxDay = Math.max.apply(Math, data.map(o => o.day ));
+  for (let i = maxStock + 2; i >= 0; i--) {
+    let newColumn = [];
+    for (let j = 0; j <= maxDay + 2; j++) {
+      let index = data.findIndex( e => e.day === j);
+      let indexR = {i : 0, j: 0}
+      let stock = maxStock + 3;
+      let day = maxDay + 3;
+      let urd = '';
+
+      if (index != -1) {
+        stock = data[index].stock;
+        day = data[index].day;
+        if (index + 1 < data.length) {
+          if (data[index].stock < data[index + 1].stock) {
+            urd = 'U';
+          } else if (data[index].stock < data[index + 1].stock) {
+            urd = 'D';
+          }
+        }
+      } else {
+        urd = 'R';
+        indexR = {i: data[index + 1].stock, j: j};
+      }
+      if (j === 0 && i === 0) {
+        newColumn.push('x');
+      } else if (j === 0) {
+        newColumn.push(i+'');
+      } else if (i === 0) {
+        newColumn.push(j+'');
+      }else if (i === stock && j === day) {
+        newColumn.push('#');
+      } else {
+        newColumn.push(' ');
+      }
+    }
+    console.log(newColumn);
+  }
+  console.log();
 }
 
 const stockData1 = [{
