@@ -5,19 +5,22 @@ class Audience {
         this.email = email
         this.age = age 
         this.type = type
-    }
-    get name() {
-        return this.name
-    }
-    set name(str) {
-        return this.name
-    }
-    get age() {
-        return this.age
-    }
-    generateId() {
-        let id = this.name.splice(0,3) +''+ 2018-this.age
+        this.id =  this.generateId()
 
+    }
+    // get name() {
+    //     this.name
+    // }
+    // set name(str) {
+    //     this.name
+    // }
+    // get age() {
+    //     return this.age
+    // }
+    generateId() {
+        let id = Object.values(this.name).slice(2)
+      //  this.name(id)
+        console.log(id)
     }
 }
 

@@ -1,5 +1,20 @@
+function generateCoor(board,data) {
+  //let newboard = board
+  for(let i = board.length; i > 0; i--){
+    console.log(board)
+    let holder = []
+    for(let j = 1; j < board[i].length; j++) {
+      for(let k = 0; k < data.length; k++){
+        if(data[i].stock == newboard[i] && data[i].day == newboard[i][j]){
+          newboard[i][j] = '#'
+          }
+        }
+      }
+    }
+ // console.log(board)
+}
 
-function makeBoard (x,y,data) {
+function makeBoard (x,y) {
   let board = []
   for(let i = x+1; i > 0; i--){
     let holder = []
@@ -17,8 +32,9 @@ function makeBoard (x,y,data) {
     board.push(holder)
   }
   return board
-}
 
+}
+//makeBoard()
 
 function generateChart(data) {
   let stockY = 0
@@ -35,8 +51,8 @@ function generateChart(data) {
   length[0] = stockY+2
   length[1] = dayX+2
 
-  return makeBoard(length[0],length[1],data)
-  
+  let board = makeBoard(length[0],length[1])
+  return generateCoor(board,data)
 
 }
 
