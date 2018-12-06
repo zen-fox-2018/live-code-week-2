@@ -1,5 +1,48 @@
 function generateChart(data) {
   //your code here
+  let y = []
+  let x = []
+  for (let i = 0 ; i < data.length ; i++) {
+    y.push(data[i].stock)
+  }
+  for (let i = 0 ; i < data.length ; i++) {
+    x.push(data[i].day)
+  }
+  y = Math.max(...y) + 2
+  x = Math.max(...x) + 2
+
+  let output = []
+  for (let i = 0 ; i <= y ; i++) {
+    let arrDalam = []
+    for (let j = 0 ; j <= x ; j++){
+      if (j === 0 & i === 0) {
+        arrDalam.push('x')
+      } else if (j === 0 && i !== 0){
+        arrDalam.push(i + '')
+      } else if (i === 0 && j > 0){
+        arrDalam.push(j + '')
+      } else {
+        if (checkData(i, j, data)) {
+          arrDalam.push('#')
+        } else {
+          arrDalam.push(' ')
+        }
+      }
+    }
+    output.unshift(arrDalam)
+  }
+
+  console.log(output);
+}
+
+function checkData(y, x, data){
+  for (let i = 0 ; i < data.length ; i++) {
+    if (y === data[i].stock && x === data[i].day){
+      return true
+    }
+  }
+
+  return false
 }
 
 const stockData1 = [{
