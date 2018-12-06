@@ -37,9 +37,9 @@ generateChart(data)
 ```
 ## RELEASE 1
 Setelah berhasil menampilkan board, maka board tersebut harus diisi berdasarkan keterangan data yang diberikan. Berikut ***rules pengisian data :***
-  - `Stock` merupakan sumbu y pada board
-  - `Day` merupakan sumbu x pada board
-  - Apabila contoh data yang dimasukan adalah stock berjumlah 1 dan pada day ke 5, maka pada board terdapat pada posisi y = 1 dan x = 5. Silahkan lihat contoh pada board
+  - `Stock` merupakan sumbu y pada board => i
+  - `Day` merupakan sumbu x pada board => j
+  - Apabila contoh data yang dimasukan adalah stock berjumlah 1 dan pada day ke 5, maka pada board terdapat pada posisi i = 1 dan j = 5. Silahkan lihat contoh pada board
   - Icon atau simbol yang kamu masukan kedalam board tidak memiliki ketentuan.
 ```javascript
 const data = [{
