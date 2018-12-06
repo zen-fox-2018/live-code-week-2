@@ -60,7 +60,56 @@ class TheaterBroadway {
   }
 
   buyTicket(audience, section, num) {
+    let price = null
+    if (section === 'Regular') {
+      price = this.priceRegular
+    } else if (section === 'VIP'){
+      price = this.priceVIP
+    } else if (section === 'VVIP'){
+      price = this.priceVVIP
+    }
 
+    if (audience.type === 'Silver' && section === 'VVIP') {
+      console.log(`We are Sorry, this section only for gold member`);
+    } else if (audience.type === 'Regular' && section !== 'Regular') {
+      console.log(`With all due respect, section ${section} only for member`);
+    } else {
+
+      this.printTicket(this.todayShow, audience, num, price)
+      for (let i = 1 ; i <= num; i++) {
+        this.audiences[section].push(audience)
+      }
+
+    }
+  }
+
+  printTicket(show, member, num, price) {
+
+    let grandTotal = price * num
+    console.log(`**************************INVOICE**************************`);
+    console.log(`${this.constructor.name}                   TICKET CONFIRMED`);
+
+    console.log(member.balance);
+    if (member.constructor.name === "Member") {
+
+      console.log(`${this.todayShow}           ${member.memberId} (${member.type})`);
+      console.log(`Quantity     : ${num}`);
+      console.log(`Price        : ${price}`);
+      console.log(`SubTotal     : ${price * num}`);
+
+      member.balance = member.balance - price * num
+      if (member.balance < 0) {
+        grandTotal = Math.abs(member.balance)
+        member.balance = 0
+      } else {
+        grandTotal = 'PAID BY BALANCE'
+      }
+      console.log(`Balance      : ${member.balance}`);
+      console.log(`Grand Total  : ${grandTotal}                  Remaining Balance: ${member.balance}`);
+      console.log(`***********************************************************`);
+    } else {
+
+    }
   }
 
   showAudience(){
@@ -81,15 +130,12 @@ class TheaterBroadway {
   }
 }
 
-class Show {
-  constructor(show, price){
-    this.show = show
-    this.
-  }
-}
-
 let membertest = new NonMember('maman', 'rahman.hasri@gmail.com', 22)
 let theaterPasar = new TheaterBroadway()
-
-theaterPasar.showAudience()
+let ibenk = new Member('ibenk', 'ibenk', 22)
+console.log(ibenk);
+ibenk.topUp(10000);
+theaterPasar.buyTicket(ibenk, 'VIP', 2)
+// console.log(theaterPasar.audiences);
+// theaterPasar.showAudience()
 // console.log(membertest);
