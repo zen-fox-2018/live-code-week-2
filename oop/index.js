@@ -162,7 +162,6 @@ class TheaterBroadWay {
             console.log(`Price       : ${price}`)
             console.log(`Sub Total   : ${price * quantity}`)
             console.log(`Balance     : ${audience.balance}`)
-            console.log(`Balance     : ${audience.balance}`)
             if(price * quantity <= audience.balance){
                 console.log(`Grand Total : PAID BY BALANCE         Remaining Balance: ${audience.balance - (price * quantity)}`)
             }else{
@@ -171,16 +170,30 @@ class TheaterBroadWay {
             console.log(`*************************************************************`)
             
 
+        }else if(buy && audience.type === 'Regular'){
+            console.log(`**************************INVOICE****************************`)
+            console.log(`Theater Broadway                             TICKET CONFIRMED`)
+            console.log(`                     ${this.todayShow}      ${audience.name} (${audience.type})`)
+            console.log(`*************************************************************`)
+            console.log(`Quantity    : ${quantity}`)
+            console.log(`Price       : ${price}`)
+            console.log(`Sub Total   : ${price * quantity}`)
+            console.log(`Grand Total : ${price * quantity}`)
+            
+            console.log(`*************************************************************`)
+            
         }
         
     }
 }
 
-let icha = new Member ('icha', 'icha.com', '22')
+let icha = new Member ('irsyah', 'icha.com', '22')
 icha.topUpBalance(100000)
+let rama = new Audience ('rama', 'rama.com', 22)
 // console.log(icha)
 let mormon = new TheaterBroadWay ()
 mormon.setTodayShow('The book of Mormon',12,100,1000)
 mormon.buyTicket(icha,'Regular', 2)
+mormon.buyTicket(rama,'Reguler', 1)
 mormon.showAudience()
 
