@@ -1,13 +1,13 @@
 
-function makeBoard (x,y) {
+function makeBoard (x,y,data) {
   let board = []
-  for(let i = 1 ; i < x+2; i++){
+  for(let i = x+1; i > 0; i--){
     let holder = []
-    for(let j = 1; j < y+2; j++){
-      if(j == 1) {
-        holder.push(String(y - i))
+    for(let j = 1; j <= y; j++) {
+      if( j == 1){
+        holder.push(String(i-1))
       }
-      else if(i == x+1 && j !== 1) {
+      else if(i == 1 && j !== 1) {
         holder.push(String(j-1))
       }
       else {
@@ -16,7 +16,6 @@ function makeBoard (x,y) {
     }
     board.push(holder)
   }
-  //console.log(board)
   return board
 }
 
@@ -35,8 +34,8 @@ function generateChart(data) {
   let length = []
   length[0] = stockY+2
   length[1] = dayX+2
-  console.log(length)
-  console.log(makeBoard(length[0],length[1]))
+
+  return makeBoard(length[0],length[1],data)
   
 
 }
