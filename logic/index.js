@@ -1,5 +1,47 @@
 function generateChart(data) {
-  //your code here
+  let stocks = []
+  let day = []
+  data.forEach(e => {
+    stocks.push(e.stock)
+    day.push(e.day)
+  });
+  stocks.sort()
+  day.sort()
+  let maxStock = stocks[stocks.length-1] + 2
+  let maxDay = day[day.length-1] + 2
+
+  let board = []
+  for (let i = 0; i <= maxStock; i++) {
+    let row = []
+    for (let j = 0; j <= maxDay; j++) {
+      if (j === 0 && i <= maxStock-1) {
+        row.push(String(maxStock-i))
+      } else if (i === maxStock && j >= 1) {
+        row.push(String(j))
+      } else if (i === maxStock && j === 0) {
+        row.push('x')
+      }
+      else {
+        row.push(' ')
+      }
+    }
+    board.push(row)
+  }
+
+  console.log(maxStock, 'ini maxStock');
+  let coord = []
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[i].length; j++) {
+      data.forEach(e => {
+        if (e.stock === maxStock-i && e.day === j) {
+          board[i][j] = '#'
+          coord.push([i, j])
+        }
+      });
+    }
+  }
+  console.log(board);
+  
 }
 
 const stockData1 = [{
@@ -46,7 +88,7 @@ const stockData2 = [{
   stock: 1,
   day: 5
 }]
-generateChart(stockData2)
+// generateChart(stockData2)
 
 /*
   [
