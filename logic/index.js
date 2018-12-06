@@ -1,4 +1,46 @@
 function generateChart(data) {
+  let y = 0
+  let x = 0
+  data.forEach(element => {
+    if (element.stock > y) {
+      y = element.stock
+    }
+    if(element.day > x) {
+      x = element.day
+    } 
+  });
+  let board = []
+  console.log(y,x)
+  y = y+2
+  x = x+2
+  let county = y
+  for (let i = 0 ; i <= y ; i++) {
+    let subboard = []
+    console.log(i)
+    for (let j = 0 ; j <= x; j++) {
+      // console.log(j)
+      if (i === y && j === 0) {
+        subboard.push("X")
+      } else  if(j === 0){
+        subboard.push(String(county))
+        county--
+      } else if (i === y){
+        subboard.push(String(j))
+      } else {
+        subboard.push("-")
+      }
+    }
+    board.push(subboard)
+  }
+  console.log(board)
+
+  for(let i = 0 ; i < data.length ; i++ ) {
+    console.log(data[i])
+     let row = data[i].stock 
+     let col = data[i].day
+      board[row +1 ][col] = "0"
+  }
+  console.log(board)
   //your code here
 }
 
@@ -19,7 +61,7 @@ const stockData1 = [{
   day: 8
 }]
 
-generateChart(stockData1)
+// generateChart(stockData1)
 /*
 [
   [ '9', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' ],
