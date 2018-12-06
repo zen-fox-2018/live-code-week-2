@@ -7,10 +7,4 @@ class Audience{
     }
 }
 
-class NonMember extends Audience{
-    constructor(){
-        super()
-    }
-}
-
 module.exports = Audience
