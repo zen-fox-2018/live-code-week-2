@@ -1,5 +1,38 @@
 function generateChart(data) {
-  //your code here
+  let y = data[0].day
+  let x = data[0].stock
+  let board = []
+
+  for (let i = 1; i < data.length; i++) {
+    if (data[i].stock > x) {
+      x = data[i].stock
+    }
+    if (data[i].day > y) {
+      y = data[i].day
+    }
+  }
+  x += 2
+  y += 2
+
+  for (let i = 0; i < x + 1; i++) {
+    let boardTemp = []
+    for (let j = 0; j < y + 1; j++) {
+      if (j == 0) {
+        boardTemp.push(`${x - i}`)
+      } else {
+        if (i == x) {
+          boardTemp.push(`${j}`)
+        } else {
+          
+          boardTemp.push(` `)
+        }
+      }
+    }
+    board.push(boardTemp)
+  }
+  console.log(x, y);
+  console.log(board);
+
 }
 
 const stockData1 = [{
@@ -18,7 +51,7 @@ const stockData1 = [{
   stock: 4,
   day: 8
 }]
-
+console.clear()
 generateChart(stockData1)
 /*
 [
