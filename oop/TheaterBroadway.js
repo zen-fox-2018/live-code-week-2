@@ -90,6 +90,7 @@ class TheaterBroadway {
             console.log();
         }
         if (section == 'VVIP' && section == 'VIP'){
+            console.log(`-------------------`);
             
         }
     }
