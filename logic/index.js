@@ -1,5 +1,53 @@
 function generateChart(data) {
-  //your code here
+  let maxX = 0;
+  let maxY = 0;
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].stock > maxY) {
+      maxY = data[i].stock;
+    }
+    if (data[i].day > maxX) {
+      maxX = data[i].day;
+    }
+  }
+  
+  let arrLuar = [];
+  let index = [];
+  for (let i = maxY + 2; i >= 0; i--) {
+    let arrDalam = [];
+    for (let j = 0; j <= maxX + 2; j++) {
+      if (j == 0 && i == 0) {
+        arrDalam.push('X');
+      } else if (i == 0) {
+        arrDalam.push(j.toString());
+      } else if (j == 0) {
+        arrDalam.push(i.toString());
+      } else {
+        let isTrue = false;
+        for(let k = 0; k < data.length; k++) {
+          if (i === data[k].stock && j === data[k].day) {
+            arrDalam.push('#');
+            index.push([i, j]);
+            isTrue = true;
+          } 
+        }
+        if (!isTrue) {
+          arrDalam.push(' ');
+        }
+      }
+    }
+    arrLuar.push(arrDalam);
+  }
+  console.log(FindIndex(index));
+  console.log(arrLuar); 
+}
+
+function FindIndex(index) {
+  console.log(index);
+  for (let i = 0; i < index.length; i++) {
+    if (index[i][0] > index[i][1]) {
+      
+    }
+  }
 }
 
 const stockData1 = [{
@@ -19,7 +67,7 @@ const stockData1 = [{
   day: 8
 }]
 
-generateChart(stockData1)
+// generateChart(stockData1)
 /*
 [
   [ '9', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' ],
