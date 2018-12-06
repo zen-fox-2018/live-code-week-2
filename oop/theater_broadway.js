@@ -47,7 +47,6 @@ class Theater_Broadway {
         this._priceRegular = input
     }
 
-    // - Buatlah method setTodayShow yang berfungsi untuk mengubah judul todayShow, harga section VVIP, VIP dan Regular untuk judul todayShow tersebut
     setTodayShow(showTitle, VVIPPrice, VIPPrice, RegularPrice) {
        this.todayShow = showTitle
        this.priceVVIP = VVIPPrice
@@ -57,39 +56,44 @@ class Theater_Broadway {
 
     addAudience(data, section) {
         //bikin kondisi di sini liat datanya, kalo dia non member cuma bisa beli regular
+        // - Jika `Member` bertype silver ingin membeli section VVIP, keluarkan message "We are sorry, this section only for gold member"
+        var sectionClass;
         if (section === 'VVIP') {
-            this.audiences.VVIP.push(data)
+            sectionClass = this.audiences.VVIP
         } else if (section === 'VIP') {
-            this.audiences.VIP.push(data)
+            sectionClass = this.audiences.VIP
         } else {
-            this.audiences.Regular.push(data)
+            sectionClass = this.audiences.Regular
+        }
+        if (data.type === 'Regular') {
+            if (section === 'VIP' || section === 'VVIP') {
+                console.log(`With all due respect, section ${section} only for member`)
+            } else {
+                sectionClass.push(data)
+            }
+        } else if (data.type === 'Silver') {
+            if (section === 'VVIP') {
+                console.log(`We are sorry, this section only for gold member`)
+            } else {
+                sectionClass.push(data)
+            }
         }
     }
 
     sectionList(section) {
         let list = ''
+        let loopBasedOn;
         if (section === 'VVIP') {
-            for (let i = 0; i < this.audiences.VVIP.length; i++) {
-                list += `${i + 1}. ${this.audiences.VVIP[i].name} (${this.audiences.VVIP[i].type} member)`
-                if (i !== this.audiences.VVIP.length - 1) {
-                    list += '\n'
-                }
-            }
+            loopBasedOn = this.audiences.VVIP
+        } else if (section === 'VIP') {
+            loopBasedOn = this.audiences.VIP
+        } else {
+            loopBasedOn = this.audiences.Regular
         }
-        else if (section === 'VIP') {
-            for (let i = 0; i < this.audiences.VIP.length; i++) {
-                list += `${i + 1}. ${this.audiences.VIP[i].name} (${this.audiences.VIP[i].type} member)`
-                if (i !== this.audiences.VIP.length - 1) {
-                    list += '\n'
-                }
-            }
-        }
-        else {
-            for (let i = 0; i < this.audiences.Regular.length; i++) {
-                list += `${i + 1}. ${this.audiences.Regular[i].name} (${this.audiences.Regular[i].type} member)`
-                if (i !== this.audiences.Regular.length - 1) {
-                    list += '\n'
-                }
+        for (let i = 0; i < loopBasedOn.length; i++) {
+            list += `${i + 1}. ${loopBasedOn[i].name} (${loopBasedOn[i].type} member)`
+            if (i !== loopBasedOn.length - 1) {
+                list += '\n'
             }
         }
         return list
@@ -124,38 +128,14 @@ class Theater_Broadway {
     }
 }
 
-// LIST AUDIENCE:
-// -------------- VVIP---------------
-// 1. irsyah (gold member)
-// 2. irsyah (gold member)
-// -------------- VIP---------------
-// THERE IS NO AUDIENCE IN THIS SECTION
-// -------------- Regular---------------
-// 1. rama (regular member)
-
 let theater = new Theater_Broadway()
 theater.setTodayShow('Cintaku Di Atas Pohon', 200000, 150000, 100000)
 let drewGuy = new Member('Drew Guy', 'dutdutsquirrel@kcn.com', 25, 1990)
 let nathanMedina = new NonMember('Nathan Medina', 'NM@blucoats.com', 23, 1991)
+let rue = new NonMember('Rue', 'NM@bluecoats.com', 16, 1998)
 theater.addAudience(drewGuy, 'VVIP')
 theater.addAudience(nathanMedina, 'Regular')
-
-// console.log(theater)
+theater.addAudience(rue, 'Regular')
 theater.showAudience()
 
 module.exports = Theater_Broadway
-
-
-// 2. `Theater Broadway` hanya menampilkan satu pertunjukan saja setiap harinya dan memiliki
-//    3 macam section yaitu VVIP, VIP dan Regular
-
-//    - `Member` yang bertype gold dapat membeli semua section
-//    - `Member` yang bertype silver hanya dapat membeli section VIP dan Regular
-//    - `NonMember` hanya dapat membeli section Regular
-
-// 3. `Theater Broadway` memiliki attribute:
-//     - todayShow
-//     - audiences
-//     - priceVVIP
-//     - priceVIP
-//     - priceRegular

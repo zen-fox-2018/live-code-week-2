@@ -1,20 +1,56 @@
 function generateChart(data) {
+  let maxY = findMaxStocks(data)
+  let maxX = findMaxDays(data)
   let result = []
-  for (let i = 0; i < data.length; i++) {
+  for (let i = maxY - 1; i >= 0; i--) {
     let resultTmp = []
-    for (let j = 0; j < array.length; j++) {
-      const element = array[j];
-      
+    for (let j = 0; j < maxX; j++) {
+      if (i === 0 && j === 0) {
+        resultTmp.push('x')
+      } else if (j === 0) {
+        resultTmp.push(i.toString())
+      } else if (i === 0) {
+        resultTmp.push(j.toString())
+      } else {
+        resultTmp.push(' ')
+      }
+    }
+    result.push(resultTmp)
+  }
+  console.log(addDataFromGenerateChart(maxY, maxX, result, data))
+}
+
+function addDataFromGenerateChart(maxY, maxX, release0, data) {
+  for (let i = 0; i < data.length; i++) {
+    for (let j = release0.length - 1; j >= 0; j--) {
+      for (let k = 0; k < release0[j].length; k++) {
+        if (data[i].stock === maxY - j - 1 && data[i].day === k) {
+          release0[j][k] = '#'
+        }
+      }
     }
   }
+  return release0
 }
 
-function findMax(data) {
-
+function findMaxStocks(data) {
+  let max = 0
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].stock > max) {
+      max = data[i].stock
+    }
+  }
+  return max + 3
 }
 
-function findMin(data) {
-
+function findMaxDays(data) {
+  let max = 0
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].day > max) {
+      max = data[i].day
+    }
+  }
+  return max + 3
 }
 
 const stockData1 = [{

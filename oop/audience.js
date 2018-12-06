@@ -52,9 +52,4 @@ class NonMember extends Audience {
     }
 }
 
-// let newMember = new NonMember('Mahdi', 'mahdihrs@yahoo.com', 23, 1994)
-// newMember.topUpBalance(600)
-// newMember.topUpBalance(600)
-// console.log(newMember);
-
 module.exports = {Audience, Member, NonMember}
