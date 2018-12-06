@@ -9,30 +9,33 @@ class Audience {
 class Members extends Audience {
     constructor(name, email, age) {
         super(name, email, age);
-        this.memberID = "";
+        this.memberID = this.addId();
         this.balance = 0;
+        this.type = this.addType();
     }
-    addMember(name, email, age) {
-        
+    addId() {
+        let randomNum = Math.round(Math.random()* 20);
+        let birthYear = 2018 - this.age;
+        let theId = this.name.slice(0, 3) + birthYear + randomNum;
+        return theId
+       
+    }
+    addType() {
         let type = ["Silver", "Gold"];
         let randomIndex = Math.round(Math.random() * 1);
-        let randomNum = Math.round(Math.random()* 20);
-        let birthYear = 2018 - age;
-        let theId = name.slice(0, 3) + birthYear + randomNum;
-        this.type = type[randomIndex]
-        this.memberID = theId;
+        return type[randomIndex];
     }
     topUp(amount) {
         if (amount < 500) {
             console.log(`Sorry, minimum amount is 500`)
         } else {
-            this.balance = amount;
+            this.balance += amount;
         }
     }
 }
-class NonMember extends Audience {
+class NonMembers extends Audience {
     constructor() {
         super(name, email, age);
     }
 }
-module.exports = {Audience, Members, NonMember};
+module.exports = {Audience, Members, NonMembers};
