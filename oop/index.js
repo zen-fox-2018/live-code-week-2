@@ -89,10 +89,10 @@ class TheaterBroadway {
     console.log(`**************************INVOICE**************************`);
     console.log(`${this.constructor.name}                   TICKET CONFIRMED`);
 
-    console.log(member.balance);
     if (member.constructor.name === "Member") {
 
-      console.log(`${this.todayShow}           ${member.memberId} (${member.type})`);
+      console.log(`${this.todayShow}                    ${member.memberId} (${member.type})`);
+      console.log(`***********************************************************`);
       console.log(`Quantity     : ${num}`);
       console.log(`Price        : ${price}`);
       console.log(`SubTotal     : ${price * num}`);
@@ -105,10 +105,16 @@ class TheaterBroadway {
         grandTotal = 'PAID BY BALANCE'
       }
       console.log(`Balance      : ${member.balance}`);
-      console.log(`Grand Total  : ${grandTotal}                  Remaining Balance: ${member.balance}`);
+      console.log(`Grand Total  : ${grandTotal}      Remaining Balance: ${member.balance}`);
       console.log(`***********************************************************`);
     } else {
-
+      console.log(`${this.todayShow}                    ${member.name} (${member.type})`);
+      console.log(`***********************************************************`);
+      console.log(`Quantity     : ${num}`);
+      console.log(`Price        : ${price}`);
+      console.log(`SubTotal     : ${price * num}`);
+      console.log(`Grand Total     : ${price * num}`);
+      console.log(`***********************************************************`);
     }
   }
 
@@ -116,7 +122,6 @@ class TheaterBroadway {
     console.log(`LIST AUDIENCE:`);
 
     for (let key in this.audiences) {
-      // console.log(this.audiences[key].length);
       if (this.audiences[key][0] === undefined) {
         console.log(`-------------- ${key} --------------`)
         console.log(`THERE IS NO AUDIENCE IN THIS SECTION`);
@@ -134,8 +139,8 @@ let membertest = new NonMember('maman', 'rahman.hasri@gmail.com', 22)
 let theaterPasar = new TheaterBroadway()
 let ibenk = new Member('ibenk', 'ibenk', 22)
 console.log(ibenk);
+theaterPasar.setTodayShow('The book of Mormon', [700, 600, 500])
 ibenk.topUp(10000);
 theaterPasar.buyTicket(ibenk, 'VIP', 2)
-// console.log(theaterPasar.audiences);
-// theaterPasar.showAudience()
-// console.log(membertest);
+theaterPasar.buyTicket(membertest, 'Regular', 2)
+console.log(theaterPasar.showAudience());
