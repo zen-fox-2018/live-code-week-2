@@ -1,5 +1,6 @@
 const Gold = require('./TypeMember.js').Gold
 const Silver = require('./TypeMember.js').Silver
+const Regular = require('./TypeMember.js').Regular
 
 class Audience {
     constructor(obj){
@@ -51,7 +52,7 @@ class Member extends Audience {
 class NonMember extends Audience {
     constructor(obj){
         super(obj)
-        this.type = 'Reguler'
+        this.type = new Regular()
     }
 }
 

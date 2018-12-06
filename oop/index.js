@@ -1,6 +1,7 @@
 
 const Member = require('./Audience.js').Member
 const NonMember = require('./Audience').NonMember
+const TheaterBroadway = require('./TheaterBroadway.js')
 
 let chris = {
     name : 'Christian' , 
@@ -31,10 +32,10 @@ let dede = {
     type : 'Member'
 }
 
-Chris = new Member(chris)
-Ari = new NonMember(ari)
-Nunu = new NonMember(nunu)
-Dede = new Member(dede)
+let Chris = new Member(chris)
+let Ari = new NonMember(ari)
+let Nunu = new NonMember(nunu)
+let Dede = new Member(dede)
 
 console.log(Chris)
 console.log(Ari);
@@ -45,5 +46,9 @@ Chris.topUp(1500)
 Dede.topUp(2000)
 Chris.topUp(300)
 
+let Biskop21 = new TheaterBroadway()
 
+Biskop21.setTodayShow('Black Dragon', 1000, 500 , 300)
 
+console.log(Biskop21)
+Biskop21.showAudience()

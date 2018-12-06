@@ -1,7 +1,7 @@
 
 class TypeMember {
     constructor(){
-        this.typeMember = null
+        this.typeMember = 'Regular'
         this.balance = 0
     }
     
@@ -20,5 +20,8 @@ class Silver  extends TypeMember {
         this.typeMember = 'Silver'
     }
 }
+class Regular extends TypeMember {
 
-module.exports = {Gold,Silver}
+}
+
+module.exports = {Gold,Silver,Regular}
