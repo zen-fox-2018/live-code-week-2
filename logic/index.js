@@ -21,7 +21,8 @@ function generateChart(data) {
     let kotakDalam = []
     let isi= 0
     isiY--
-    for(let j = 0; j < maxY + 2; j++){      
+    for(let j = 0; j < maxY + 2; j++){
+            
       if( i === maxX-1 && j > 0) {        
         isi++
         kotakDalam.push(String(isi))
@@ -37,12 +38,23 @@ function generateChart(data) {
         isi = ' '
         kotakDalam.push(String(isi))
       }
-
-      
-    }    
+    }
+        
     kotakLuar.push(kotakDalam)
   }
-  // console.log(kotakLuar)
+  for(let k = 0; k < arrayKoordinat.length; k++){
+    posisiDay = arrayKoordinat[k][0]
+    posisiStock = arrayKoordinat[k][1]
+    kotakLuar[posisiStock][posisiDay] = '#'
+  }
+  //release 2
+  for(let i = 0; i < kotakLuar.length; i++){
+    for(let j = 0; j < kotakLuar[i].length; j++){
+      
+    }
+  }
+
+  console.log(kotakLuar)
   
 }
 
