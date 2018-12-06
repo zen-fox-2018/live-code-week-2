@@ -3,15 +3,10 @@ class Audience {
         this.name = name
         this.email = email
         this.age = age
-        this.type = type || `Regular`
+        this.type = type
     }
 
-    topUp(nominal) {
-        const minimalTopup = 500
-        if (nominal < minimalTopup) return `Sorry, minimum amount is 500`
 
-        
-    }
 }
 
 class Member extends Audience {
@@ -19,16 +14,30 @@ class Member extends Audience {
         super(name, email, age)
         this.memberId = this.makeMemberId()
         this.balance = balance || 0
+        this.type = this.makeMemberType()
+    }
+
+    topUp(nominal) {
+        const minimalTopup = 500
+        if (nominal < minimalTopup) return `Sorry, minimum amount is 500`
+        this.balance += nominal
+        return this.balance
     }
 
     makeMemberId() {
         return `${this.name[0] + this.name[1] + this.name[2]}${new Date().getFullYear() - this.age}${Math.round(Math.random() * 20)}`
     }
+
+    makeMemberType() {
+        const section = [`Gold`, `Silver`]
+        return section[Math.floor(Math.random() * section.length)]
+    }
+
 }
 
 class NonMember extends Audience {
-    constructor(name, email, age, type, memberId, balance) {
-        super(name, email, age, type, memberId, balance)
+    constructor(name, email, age, type) {
+        super(name, email, age, type)
     }
 }
 
