@@ -10,7 +10,7 @@ class Audience {
 
 class Member extends Audience {
     constructor() {
-        super("blue", "violet@mail.com", 22)
+        super("violet", "violet@mail.com", 22)
         this.type = this.generateType()
         this.memberId = this.generateMemberId();
         this.balance = 0

@@ -21,8 +21,6 @@ function generateChart(data) {
       board[i].push(" ")
     }
   }
-
-  console.log(board)
 }
 
 const stockData1 = [{

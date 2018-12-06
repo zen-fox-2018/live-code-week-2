@@ -1,6 +1,6 @@
 
 class TheaterBroadway {
-    constructor(todayShow, audiences, priceVVIP, priceVIP, priceRegular) {
+    constructor(todayShow, priceVVIP, priceVIP, priceRegular) {
         this.todayShow = null;
         this.audiences = { VVIP: [], VIP: [], Regular: [] };
         this.priceVVIP = null;
@@ -8,12 +8,15 @@ class TheaterBroadway {
         this.priceRegular = null;     
     }
 
-    buyTicket() {
-
+    buyTicket(data) {
+        console.log(data)
     }
 
-    setTodayShow() {
-
+    setTodayShow(showName, priceVVIP, priceVIP, priceRegular) {
+        this.todayShow = showName;
+        this.priceVVIP = priceVVIP;
+        this.priceVIP = priceVIP;
+        this.priceRegular = priceRegular;
     }
 
     showAudience(input) {
@@ -21,6 +24,19 @@ class TheaterBroadway {
             this.audiences.VVIP.push(input.name)
         } else if (input.type === "SILVER") {
             this.audiences.VIP.push(input.name)
+        } else if (input.type === "Regular") {
+            this.audiences.Regular.push(input.name)
+        }
+
+        console.log("List of Audience: ")
+        console.log("===================")
+        if(this.audiences.VVIP.length !== 0 && this.audiences.VIP.length !== 0) {
+            // if(this.audiences.VVIP) {
+                console.log("--------VVIP -------")
+                console.log(this.audiences.VVIP[0])
+            // }
+        } else {
+            return "There is no audience in this section"
         }
     }
 }
