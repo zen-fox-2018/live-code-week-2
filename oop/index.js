@@ -1,9 +1,16 @@
-const Audience = require('./audience.js');
 const Member = require('./member.js');
 const NonMember = require('./non-member.js');
+const TheaterBroadway = require('./theater.js');
 
-let someone = new Member('Arief Rachman', 'tmp@mail.com', 24);
-someone.topupBalance(5000);
+let arief = new Member('Arief Rachman', 'tmp@mail.com', 24);
+arief.topupBalance(5000);
+// console.log(arief);
 
-let someoneA = new NonMember('Biskuit Roma', 'biskuit@mail.com', 24);
-console.log(someoneA);
+let narji = new NonMember('Narji', 'narji@mail.com', 28);
+// console.log(narji);
+
+let theater = new TheaterBroadway();
+
+theater.sectionSelection(arief);
+theater.sectionSelection(narji);
+theater.showAudience();

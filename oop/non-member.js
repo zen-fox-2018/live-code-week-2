@@ -6,4 +6,4 @@ class NonMember extends Audience {
     }
 }
 
-module.exports = NonMember
+module.exports = NonMember;

@@ -1,4 +1,4 @@
-const Audience = require('./audience.js')
+const Audience = require('./audience.js');
 
 class Member extends Audience {
     constructor(name, email, age) {
@@ -31,7 +31,7 @@ class Member extends Audience {
         if (amount < 500) {
             console.log('Sorry, minimum amount is 500');
         } else {
-            this.balance = amount
+            this.balance = amount;
         }
 
     }
