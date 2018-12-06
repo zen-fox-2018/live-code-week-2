@@ -52,26 +52,43 @@ function generatePosition(data){
 function generateChart(data) {
   //your code here
   var board = generatePosition(data);
-  var day = [];
-  var stock = [];
-  for (var i = 0; i < data.length; i++) {
-    stock.push(data[i].stock);
-    day.push(data[i].day);
-  }
-  var sortedDay = day.sort();
-  var sortedStock = stock.sort();
-  var subsStock = 100;
-  var subsDay = 100;
-  for (var j = 0; j < sortedStock.length-1; j++) {
-    while (subsStock > 0) {
-      if (sortedStock[j+1] > subsStock[j]) {
-        
+  var count = 0;
+  var indexX = 0;
+  var indexY = 0;
+  for (var i = 0; i < data.length-1; i++) {
+
+    //stock count
+    if (data[i+1].stock > data[i].stock) {
+      count = data[i+1].stock-data[i].stock;
+      while (count >0) {
+        indexX = data[i].day;
+        indexY = count-1;
+        board[indexY,indexX] = 'D';
+        count--;
       }
     }
-    for (var k = 0; k < sortedDay.length-1; k++) {
-      while
+    else if (data[i+1].stock < data[i].stock) {
+      count = data[i].stock-data[i+1].stock;
+      while (count > 0) {
+        indexX = data[i].day;
+        indexY = data[i+1].;
+        board[indexY,indexX] = 'U';
+        count--;
+      }
+    }
+
+    //day count
+    if (data[i+1].day > data[i].day) {
+      count = data[i+1].stock-data[i].stock;
+      while (count >0) {
+        indexX = count+1;
+        indexY = data[i].stock;
+        board[indexY,indexX] = 'R';
+        count--;
+      }
     }
   }
+
 }
 
 
