@@ -26,7 +26,6 @@ Berikut requirement dari theater broadway ini:
    - `Member` yang bertype silver hanya dapat membeli section VIP dan Regular
    - `NonMember` hanya dapat membeli section Regular
 
-
 3. `Theater Broadway` memiliki attribute:
     - todayShow
     - audiences
