@@ -47,15 +47,14 @@ class Member extends Audience {
 }
 
 class NonMember extends Audience {
-    constructor() {
-        super()
+    constructor(name, email, age, birthYear) {
+        super(name, email, age, birthYear)
     }
 }
 
-let newMember = new Member('Mahdi', 'mahdihrs@yahoo.com', 23, 1994)
-newMember.topUpBalance(600)
-newMember.topUpBalance(600)
-console.log(newMember);
-
+// let newMember = new NonMember('Mahdi', 'mahdihrs@yahoo.com', 23, 1994)
+// newMember.topUpBalance(600)
+// newMember.topUpBalance(600)
+// console.log(newMember);
 
 module.exports = {Audience, Member, NonMember}

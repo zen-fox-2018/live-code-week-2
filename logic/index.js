@@ -1,5 +1,20 @@
 function generateChart(data) {
-  //your code here
+  let result = []
+  for (let i = 0; i < data.length; i++) {
+    let resultTmp = []
+    for (let j = 0; j < array.length; j++) {
+      const element = array[j];
+      
+    }
+  }
+}
+
+function findMax(data) {
+
+}
+
+function findMin(data) {
+
 }
 
 const stockData1 = [{
