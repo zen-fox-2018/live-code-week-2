@@ -1,0 +1,11 @@
+const Member = require ('./Member ')
+const NonMember = require('./NonMember')
+const TheaterBroadway = require('./TheaterBroadway')
+
+let zia = new Member("zia","zia@co.com", 21)
+let venecia = new NonMember("venecia","venecia@ro.id",18)
+let theaterBroadway = new TheaterBroadway()
+console.log(zia)
+console.log(venecia)
+theaterBroadway.SetTodayShow("maling kundang", 150000, 100000 , 50000)
+console.log(theaterBroadway)
