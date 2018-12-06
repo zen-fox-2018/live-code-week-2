@@ -29,7 +29,7 @@ class TheaterBroadway {
       console.log(`THERE IS NO AUDIENCE IN THIS SECTION`);
     }
     for (let i = 0; i < this.audiences.VVIP.length; i++) {
-      console.log(`${i+1}. ${this.audiences.VVIP[i].name} (gold member)`);
+      console.log(`${i+1}. ${this.audiences.VVIP[i].name} (${this.audiences.VVIP[i].type} member)`);
     }
 
     console.log(`-------------- VIP---------------`);
@@ -37,7 +37,7 @@ class TheaterBroadway {
       console.log(`THERE IS NO AUDIENCE IN THIS SECTION`);
     }
     for (let i = 0; i < this.audiences.VIP.length; i++) {
-      console.log(`${i+1}. ${this.audiences.VIP[i].name}`);
+      console.log(`${i+1}. ${this.audiences.VIP[i].name} (${this.audiences.VIP[i].type} member)`);
     }
 
     console.log(`-------------- Regular---------------`);
@@ -45,7 +45,70 @@ class TheaterBroadway {
       console.log(`THERE IS NO AUDIENCE IN THIS SECTION`);
     }
     for (let i = 0; i < this.audiences.Regular.length; i++) {
-      console.log(`${i+1}. ${this.audiences.VIP[i].name}`);
+      console.log(`${i+1}. ${this.audiences.Regular[i].name} (${this.audiences.Regular[i].type} member)`);
+    }
+  }
+
+  buyTicket(audience, section, totalTicket) {
+    if (audience.type !== "Gold" && section === "VVIP") {
+      return console.log(`"We are sorry, this section only for gold member"`);
+    }
+    else if (audience.type === "Regular" && (section === "VVIP" || section === "VIP")) {
+      return console.log(`With all due respect, section ${section} only for member`);
+    }
+    else {
+      let balance = audience.balance
+      if (section === "VVIP") {
+        for (let i = 0; i < totalTicket; i++) {
+          audience.balance = audience.balance - this.priceVVIP
+          this.audiences.VVIP.push(audience)
+        }
+        //Cetak Invoice
+        console.log(`**************************INVOICE****************************`);
+        console.log(`Theater Broadway                             TICKET CONFIRMED`);
+        console.log(`                     ${this.todayShow}      ${audience.memberId} (${audience.type})`);
+        console.log(`*************************************************************`);
+        console.log(`Quantity    : ${totalTicket}`);
+        console.log(`Price       : ${this.priceVVIP}`);
+        console.log(`Sub Total   : ${totalTicket * this.priceVVIP}`);
+        console.log(`Balance     : ${balance}`);
+        console.log(`Grand Total : PAID BY BALANCE         Remaining Balance: ${audience.balance}`);
+        console.log(`*************************************************************`);
+
+      }
+      else if (section === "VIP") {
+        for (let i = 0; i < totalTicket; i++) {
+          audience.balance = audience.balance - this.priceVIP
+          this.audiences.VIP.push(audience)
+        }
+        //Cetak Invoice
+        console.log(`**************************INVOICE****************************`);
+        console.log(`Theater Broadway                             TICKET CONFIRMED`);
+        console.log(`                     ${this.todayShow}      ${audience.memberId} (${audience.type})`);
+        console.log(`*************************************************************`);
+        console.log(`Quantity    : ${totalTicket}`);
+        console.log(`Price       : ${this.priceVVIP}`);
+        console.log(`Sub Total   : ${totalTicket * this.priceVVIP}`);
+        console.log(`Balance     : ${balance}`);
+        console.log(`Grand Total : PAID BY BALANCE         Remaining Balance: ${audience.balance}`);
+        console.log(`*************************************************************`);
+      }
+      else if (section === "Regular") {
+        for (let i = 0; i < totalTicket; i++) {
+          audience.balance = audience.balance - this.regular
+          this.audiences.Regular.push(audience)
+        }
+        //Cetak Invoice
+        console.log(`**************************INVOICE****************************`);
+        console.log(`Theater Broadway                             TICKET CONFIRMED`);
+        console.log(`                     ${this.todayShow}      ${audience.name} (${audience.type})`);
+        console.log(`*************************************************************`);
+        console.log(`Quantity    : ${totalTicket}`);
+        console.log(`Price       : ${this.priceVVIP}`);
+        console.log(`Sub Total   : ${totalTicket * this.priceVVIP}`);
+        console.log(`Grand Total : ${totalTicket * this.priceVVIP}`);
+        console.log(`*************************************************************`);
+      }
     }
   }
 }
@@ -56,7 +119,6 @@ class Audience {
     this.email = email
     this.age = age
     this.type = "Regular"
-    this.randomType()
   }
 }
 
@@ -65,6 +127,7 @@ class Member extends Audience {
     super(name, email, age)
     this.memberId = this.generateMemberId()
     this.balance = 0
+    this.randomType()
   }
 
   generateMemberId() {
@@ -92,15 +155,20 @@ class Member extends Audience {
   }
 }
 
-class NonMember extends Audience {
-  constructor(name, email, age) {
-    super(name, email, age)
-  }
-}
-
 let patria = new Member("patria", "patria.gani@gmail.com", 22)
 console.log(patria);
 patria.topUp(500)
 
+let rama = new Audience("rama", "rama.penguasa@dunia.com", 24)
+console.log(rama);
+
 let theater = new TheaterBroadway()
+theater.setTodayShow('Patria Makan Bakpao The Movie', 200, 150, 100)
+theater.buyTicket(patria, "VIP", 2)
+theater.buyTicket(rama, "Regular", 2)
+
+console.log(theater);
+theater.showAudience()
+
+
 

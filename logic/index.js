@@ -32,7 +32,7 @@ function generateChart(data) {
           count--
         }
         else {
-          temp.push([])
+          temp.push([' '])
         }
       }
     }
@@ -50,6 +50,7 @@ function generateChart(data) {
   }
 
   //Eksekusi
+  //Sudah berusaha supaya tidak redundant
   for (let i = 0; i < placedData.length; i++) {
     if (i !== placedData.length-1) {
       let data1 =  placedData[i]
@@ -61,21 +62,25 @@ function generateChart(data) {
         for (let j = 1; j <= selisih; j++) {
           board[data1[0]+j][data1[1]] = "D"
         }
+        //Right
         let selisihHari = data2[1] - data1[1]
         for (let j = 1; j < selisihHari; j++) {
           board[data1[0]+selisih][data1[1]+j] = "R"
         }
       }
+      //Up
       else if (data1[0] > data2[0]) {
         let selisih = data1[0] - data2[0]
         for (let j = 1; j <= selisih; j++) {
           board[data1[0]-j][data1[1]] = "U"
         }
+        //Right
         let selisihHari = data2[1] - data1[1]
         for (let j = 1; j < selisihHari; j++) {
           board[data1[0]-selisih][data1[1]+j] = "R"
         }
       }
+      //Right
       else if (data1[0] === data2[0]) {
         let selisihHari = data2[1] - data1[1]
         for (let j = 1; j < selisihHari; j++) {
