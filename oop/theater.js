@@ -18,9 +18,9 @@ class TheaterBroadway {
     console.log(`LIST AUDIENCE:`);
     for (let type in this.audiences) {
       console.log(`-------------- ${type} ---------------`);
-      if (type.length) {
+      if (this.audiences[type].length) {
         this.audiences[type].forEach( (a, i) => {
-          console.log(`${i+1}. ${a} (${a.type} member)`);
+          console.log(`${i+1}. ${a.name} (${a.type} member)`);
         });
       } else {
         console.log(`THERE IS NO AUDIENCE IN THIS SECTION`);
@@ -32,34 +32,64 @@ class TheaterBroadway {
       if (section === 'VVIP' || section === 'VIP') {
         console.log(`With all due respect, section ${section} only for member`);
       } else {
-        console.log(    ```
+        let subTotal = quantity * this.priceRegular;
+
+        console.log(    `
           **************************INVOICE****************************
           ${this.constructor.name}                             TICKET CONFIRMED
-          ${this.todayShow}                ${audience.name} (${audience.type})
+                          ${this.todayShow}                ${audience.name} (${audience.type})
           *************************************************************
           Quantity    : ${quantity}
           Price       : ${this.priceRegular}
-          Sub Total   : ${quantity * this.priceRegular}1
-          Grand Total : ${quantity * this.priceRegular}
+          Sub Total   : ${subTotal}
+          Grand Total : ${subTotal}
           *************************************************************
-          ```);
+          `);
+          for (let i = 0; i < quantity; i++) {
+            this.audiences[section].push(audience);
+          }
       }
     } else if (audience.constructor.name === 'Member'){
-      if (audience.type === 'Silver' && section === 'VIP') {
+      if (audience.type === 'Silver' && section === 'VVIP') {
         console.log(`We are sorry, this section only for gold member`);
       } else {
-        console.log(      ```
+        let price = null;
+        if (section === 'VVIP'){
+          price = this.priceVVIP;
+        } else if (section === 'VIP') {
+          price = this.priceVIP;
+        } else if (section === 'Regular') {
+          price = this.priceRegular;
+        }
+
+        let subTotal = quantity * price;
+        let grandTotal = null;
+        let balance = audience.balance;
+        console.log(balance);
+        if (audience.balance - subTotal >= 0) {
+          grandTotal = 'PAID BY BALANCE';
+          audience.balance -= subTotal;
+        }else {
+          grandTotal = Math.abs(audience.balance - subTotal);
+          audience.balance = 0;
+        }
+
+        console.log(      `
           **************************INVOICE****************************
           ${this.constructor.name}                             TICKET CONFIRMED
-          ${this.todayShow}      ${audience.name} (${audience.type})
+                          ${this.todayShow}      ${audience.name} (${audience.type})
           *************************************************************
-          Quantity    : 3
-          Price       : 500
-          Sub Total   : 1500
-          Balance     : 10000
-          Grand Total : PAID BY BALANCE         Remaining Balance: 8500
+          Quantity    : ${quantity}
+          Price       : ${price}
+          Sub Total   : ${subTotal}
+          Balance     : ${balance}
+          Grand Total : ${grandTotal}         Remaining Balance: ${audience.balance}
           *************************************************************
-          ```);
+          `);
+          for (let i = 0; i < quantity; i++) {
+            this.audiences[section].push(audience);
+          }
+
       }
     }
   }
